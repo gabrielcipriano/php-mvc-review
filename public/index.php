@@ -10,15 +10,15 @@
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 
-
-spl_autoload_register(function ($class) {
-    $root = dirname(__DIR__);
-    $class_path = str_replace('\\', '/', $class);
-    $file = $root . '/' . $class_path . '.php';
-    if (is_readable($file)){
-        require $file;
-    }
-});
+//Not necessary as I'm using composer class autoloader
+// spl_autoload_register(function ($class) {
+//     $root = dirname(__DIR__);
+//     $class_path = str_replace('\\', '/', $class);
+//     $file = $root . '/' . $class_path . '.php';
+//     if (is_readable($file)){
+//         require $file;
+//     }
+// });
 
 $router = new Core\Router();
 
