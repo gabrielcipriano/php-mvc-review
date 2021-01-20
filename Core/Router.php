@@ -105,19 +105,17 @@ class Router
                 $action = $this->params['action'];
                 $action = $this->toCamelCase($action);
 
-                try {
-                    if ($this->thereIsNoActionSufix($action)){
-                        $controller_obj->$action();
-                    }
-                } catch (\Exception $e) {
-                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                if ($this->thereIsNoActionSufix($action)){
+                    $controller_obj->$action();
+                }else{
+                    throw new \Exception("Method $action in controller $controller not found");
                 }
-                
             } else {
+                throw new \Exception("Controller $controller not found");
                 echo "Controller class $controller not found";
             }
         } else {
-            echo "No route matched.";
+            throw new \Exception("No route matched.", 404);
         }
     }
 
